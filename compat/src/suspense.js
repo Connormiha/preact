@@ -75,7 +75,9 @@ Suspense.prototype._childDidSuspend = function(promise) {
 			unmount(_this.props.fallback);
 
 			// make preact think we had mounted the _parkedChildren previously...
-			_this._vnode._children = _this._parkedChildren;
+			if (_this._parkedChildren) {
+				_this._vnode._children = _this._parkedChildren;
+			}
 			// reset the timeout & clear the now no longer parked vnode
 			_this._timeout = _this._parkedChildren = null;
 
